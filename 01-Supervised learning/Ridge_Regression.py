@@ -27,18 +27,27 @@ plt.axis('tight')
 plt.show()
 
 ## Setting the regularization parameter: generalized Cross-Validation
+import numpy as np
+import sklearn
+from sklearn import datasets, linear_model
+import matplotlib.pyplot as plt
+
 x = np.array([0, 5, 10, 15, 20, 25]).reshape(-1, 1)
 y = [0, 7, 9, 15, 22, 24]
 
 model = sklearn.linear_model.LinearRegression()
 model.fit(x, y)
 
-ridge = sklearn.linear_model.RidgeCV(alphas=[100], cv=3)
-ridge.fit(x, y)
-print(ridge.alpha_)
+ridge1 = sklearn.linear_model.Ridge(alpha=50)
+ridge1.fit(x, y)
+
+ridge2 = sklearn.linear_model.RidgeCV(alphas=[100], cv=3)
+ridge2.fit(x, y)
+print(ridge2.alpha_)
 
 plt.scatter(x, y)
 plt.plot(x, model.predict(x), c='g', linewidth=3, label='linear_regression')
-plt.plot(x, ridge.predict(x), c='r', linewidth=3, label='ridge_regression')
+plt.plot(x, ridge1.predict(x), c='r', linewidth=3, label='ridge1_regression')
+plt.plot(x, ridge2.predict(x), c='b', linewidth=3, label='ridge2_regression')
 plt.legend(loc='best')
 plt.show()
