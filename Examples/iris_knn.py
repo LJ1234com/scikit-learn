@@ -1,8 +1,8 @@
 import numpy as np
 import sklearn
 import sklearn.datasets
-# import sklearn.neighbors.KNeighborsClassifier
-from sklearn.neighbors import KNeighborsClassifier
+import sklearn.neighbors
+
 
 
 iris = sklearn.datasets.load_iris()
